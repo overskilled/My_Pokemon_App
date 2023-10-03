@@ -1,29 +1,29 @@
-import { useState, useEffect} from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 
-const getPokemon = () => {
-    const [pokemon, setPokemon] = usestate([]);
+function Getpokemon() {
+    const [pokemon, setPokemon] = useState([]);
 
     useEffect(() => {
         const getPokemonList = async () => {
             const pokemonArray = [];
             for (let i = 1; i <= 6; i++) {
-                const response = await getpokemonData(id);
+                const response = await getPokemonData(i);
                 pokemonArray.push(response);
             }
 
             console.log(pokemonArray);
             setPokemon(pokemonArray);
         }
-        getPokemonList
+        getPokemonList();
     }, []);
 
-    const getpokemonData = async (id) => {
-        const response = await axios.get(`https://pokeapi.co/api/v2/pokemon/${id}`);
-        return response;
+    const getPokemonData = async (id) => {
+        const res = await axios.get(`https://pokeapi.co/api/v2/pokemon/${id}`);
+        return res;
     }
 
     return pokemon;
 }
 
-export default getPokemon;
+export default Getpokemon;

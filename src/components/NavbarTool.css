@@ -1,0 +1,9 @@
+.navbar-custom {
+
+    min-height: 200px;
+}
+
+.navbar-custom .form-inline {
+    width: 200px;
+}
+

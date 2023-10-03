@@ -1,0 +1,15 @@
+.pokemon-type {
+    display: flex;
+    justify-content: space-around;
+}
+
+.pokemon-type p {
+    border: 1px solid black;
+    border-radius: 5px;
+    width: 70px;
+}
+
+.link-name {
+    color: black;
+    text-decoration: none;
+}
