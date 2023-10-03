@@ -36,6 +36,7 @@ const PokemonPage = () => {
 
 
   const color = getColor();
+  const progressBarVariants = ['success', 'info', 'warning', 'danger'];
 
   return (
     <Container className="my-5">
@@ -50,7 +51,7 @@ const PokemonPage = () => {
 
       <Row>
         <Col xs={12} sm={12} md={12} lg={12} xl={12}>
-          <Card className="my-3 p-2 rounded text-center shadow p-3 mb-5 bg-white" style={{ border: 'none' }}>
+          <Card className="my-3 p-2 rounded text-center shadow p-3 mb-5 bg-white" style={{ border: 'none', width: '100%', }}>
             <div style={{ backgroundColor: color }}>
               <Link to={`/pokemon/${pokemonDetails?.id}`}>
                 <Card.Img
@@ -59,41 +60,25 @@ const PokemonPage = () => {
                   variant="top"
                 />
               </Link>
-              <p>{pokemonDetails?.types[0]?.type.name}</p>
+
             </div>
           </Card>
         </Col>
         <Row>
             <Col>
-                <Card>stat 1(5)
-                    <br/>
-                    <Table striped bordered hover variant="white">
-                    <thead>
-                        <tr>
-                        <th><b>Stats</b></th>
-                        <th><b>Value</b></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td><p><b>Abilities : </b></p></td>
-                            <td>
-                            {pokemonDetails?.abilities.map((type, index) => (
-                                    <span key={type.ability.name}>
-                                    {index > 0 && ', '}
-                                    {type.ability.name}
-                                    </span>
-                                ))}
-                            </td>
-                        </tr>
-                    </tbody>
-                    </Table>
-
-
+                <Card className="d-none d-lg-block" style={{ display: 'flex', flexDirection: 'column' }}>
+                    <div className="d-inline p-2 text-dark"><b>Abilities:</b></div>
+                    <div className="d-inline p-2 text-dark">{pokemonDetails?.abilities.map((type, index) => (
+                        <span  key={type.ability.name} >
+                            {index > 0 && ', '}
+                            {type.ability.name}
+                        </span>
+                        ))}</div>
                 </Card>
             </Col>
+
             <Col>
-                <Card>stat 2
+                <Card>
                     <br/>
                     <Table striped bordered hover variant="white">
                     <thead>
@@ -103,14 +88,22 @@ const PokemonPage = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td><p><b>  {pokemonDetails?.stats[0]?.stat.name} : </b></p></td>
-                            <td>
-                            <div>
-                            <ProgressBar animated  variant="success" now={pokemonDetails?.stats[0].base_stat} label={pokemonDetails?.stats[0].base_stat} />
-                            </div>
-                            </td>
-                        </tr>
+                            {
+                                pokemonDetails?.stats.map((stat, index) => (
+                                  <tr key={index}>
+                                    <td><b>{stat.stat.name} :</b></td>
+                                    <td>
+                                      <ProgressBar
+                                        animated
+                                        variant={progressBarVariants[index % progressBarVariants.length]}
+                                        now={stat.base_stat}
+                                        label={stat.base_stat}
+                                      />
+                                    </td>
+                                  </tr>
+                                ))
+                            }
+
                     </tbody>
                     </Table>
                 </Card>
