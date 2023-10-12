@@ -9,18 +9,16 @@ const Home = () => {
     const pokemon = Getpokemon();
 
     return (
-        <>
-            {
-
-                <Row>
-                    <NavbarTool />
-                    {pokemon.map((p) => (
-                        <Col key={p.data.name} xs={12} sm={12} md={4} lg={4} xl={4}>
-                            <Pokemon pokemon={p.data} />
-                        </Col>
-                    ))}
-                </Row>
-            }
+        <> {console.log(pokemon)}
+            <NavbarTool />
+            {pokemon.name}
+            <Row>
+                {pokemon.map((p) => (
+                    <Col key={p.name} xs={12} sm={12} md={4} lg={4} xl={4}>
+                        <Pokemon pokemon={p} />
+                    </Col>
+                ))}
+            </Row>
         </>
     )
 }

@@ -1,28 +1,22 @@
 import { useState, useEffect } from "react";
-import axios from "axios";
 
 function Getpokemon() {
+
     const [pokemon, setPokemon] = useState([]);
 
     useEffect(() => {
-        const getPokemonList = async () => {
-            const pokemonArray = [];
-            for (let i = 1; i <= 6; i++) {
-                const response = await getPokemonData(i);
-                pokemonArray.push(response);
-            }
-
-            console.log(pokemonArray);
-            setPokemon(pokemonArray);
-        }
-        getPokemonList();
-    }, []);
-
-    const getPokemonData = async (id) => {
-        const res = await axios.get(`https://pokeapi.co/api/v2/pokemon/${id}`);
-        return res;
-    }
-
+        const fetchData = async () => {
+          const response = await fetch('https://pokeapi.co/api/v2/pokemon?limit=500');
+          const data = await response.json();
+          const results = await Promise.all(data.results.map(async (pokemon) => {
+            const pokemonResponse = await fetch(pokemon.url);
+            return pokemonResponse.json();
+          }));
+          setPokemon(results);
+        };
+        fetchData();
+      }, []);
+    console.log(pokemon);
     return pokemon;
 }
 

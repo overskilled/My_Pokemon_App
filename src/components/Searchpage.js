@@ -1,15 +1,12 @@
-import React from "react";
-import { Card } from "react-bootstrap";
-import {  Link } from "react-router-dom";
-import './Pokemon.css';
-import changeColor from "./PokemonColor";
+import React from 'react';
+import { Container, Row, Col, Card } from "react-bootstrap";
 
-const Pokemon = ({ pokemon }) => {
-    let types = pokemon.types
-    let color = changeColor(types[0].type.name);
-    return (
-        <>
-            <Card as='div'
+const Searchpage = () => {
+  return (
+    <Container>
+        <Row>
+            <Col xs={12} md={6} >
+                <Card as='div'
                 className="my-3 p-3 rounded text-center shadow mb-5 bg-white"
                 style={{border: 'none', width: '25rem', background: color}}
                 >
@@ -42,8 +39,10 @@ const Pokemon = ({ pokemon }) => {
                         </div>
                     </Card.Body></div>
                 </Card>
-        </>
-    );
+            </Col>
+        </Row>
+    </Container>
+  )
 }
 
-export default Pokemon;
+export default Searchpage

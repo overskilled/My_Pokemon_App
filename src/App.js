@@ -1,28 +1,31 @@
-import React from "react";
-import './App.css';
-import { Container } from "react-bootstrap";
+import React, { Suspense } from 'react';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-
-//pages
-import Home from "./pages/Home";
 import PokemonPage from "./pages/PokemonPage";
-
-//Components
-
+import Loader from "./components/Loader"
+const Home = React.lazy(() => import("./pages/Home"));
 
 function App() {
   return (
     <div className="App">
       <Router>
-        <Container>
+        <Suspense fallback={<Loader />}>
           <Routes>
             <Route exact path="/" element={<Home />}/>
             <Route path="/pokemon/:id" element={<PokemonPage />}/>
           </Routes>
-        </Container>
+        </Suspense>
       </Router>
     </div>
   );
 }
 
 export default App;
+/*
+<Router>
+
+            <Routes>
+              <Route exact path="/" element={<Home />} />
+              <Route path="/pokemon/:id" element={<PokemonPage />} />
+            </Routes>
+          </Suspense>
+      </Router>*/

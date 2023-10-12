@@ -1,0 +1,9 @@
+.loader {
+    height: 100vh;
+
+}
+
+.spinner {
+    height: 5vh;
+    width: 5vh;
+}
