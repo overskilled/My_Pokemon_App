@@ -7,9 +7,15 @@ import NavbarTool from "../components/NavbarTool";
 
 const Home = () => {
     const pokemon = Getpokemon();
+    const styles = {
+        backgroundColor: "#ffffb3",
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+      };
 
     return (
-        <> {console.log(pokemon)}
+        <div style={styles}>
+            {console.log(pokemon)}
             <NavbarTool />
             {pokemon.name}
             <Row>
@@ -19,7 +25,7 @@ const Home = () => {
                     </Col>
                 ))}
             </Row>
-        </>
+        </div>
     )
 }
 

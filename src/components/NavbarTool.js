@@ -4,7 +4,6 @@ import "./NavbarTool.css"
 import pokedeximage from "../images/pokedex.png"
 import { Card } from "react-bootstrap";
 import {  Link } from "react-router-dom";
-import changeColor from "./PokemonColor";
 // components
 import Searchbar from "./Searchbar";
 import searchPokemon from '../services/searchPokemon';
